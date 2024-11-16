@@ -76,7 +76,7 @@ function CreateUser(){
         })
         .then(res => {
             console.log(res);
-            navigate('/createUser');
+            navigate('/');
         })
         .catch(err => console.log(err));
     }
