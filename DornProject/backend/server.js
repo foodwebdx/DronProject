@@ -67,6 +67,28 @@ app.post("/notif", (req, res) => {
     });
 });
 
+app.post("/createDispositivo", (req, res) => {
+    const sql = "INSERT INTO `Dispositivo` (`nombre`, `tipo`, `estado`, `ubicacion`, `nivelBateria`, `tiempoUsoTotal`, `fechaUltimaActividad`, `capacidadCarga`) VALUES (?)";
+    const values = [
+        req.body.nombre,
+        req.body.tipo,
+        req.body.estado,
+        req.body.ubicacion,
+        req.body.nivelBateria,
+        req.body.tiempoUsoTotal,
+        req.body.fechaUltimaActividad,
+        req.body.capacidadCarga
+    ];
+    
+    db.query(sql, [values], (err, data) => {
+        if (err) {
+            console.error(err); // Muestra el error en la consola para depuración
+            return res.json("Error al insertar el dispositivo.");
+        }
+        return res.json("El dispositivo se creó exitosamente.");
+    });
+});
+
 
 //Get API CALLS
 // API para validar usuario existe

@@ -3,6 +3,7 @@ import Login from './login';
 import CreateUser from './CreateUser';
 import MainPage from './MainPage';
 import FormularioReserva from './FormularioReserva';
+import CreateDispositivo from './CreateDispositivo';
 
 
 function RoutesNav() {
@@ -19,7 +20,7 @@ function RoutesNav() {
 
                     <Route path="/MainPage" element={<MainPage />} />
                     <Route path="/FormularioReserva" element={<FormularioReserva/>} />
-
+                    <Route path="/CreateDispositivo" element={<CreateDispositivo/>} />
                 </Routes>
             </BrowserRouter>
         </div>
