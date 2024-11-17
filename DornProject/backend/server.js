@@ -35,6 +35,23 @@ app.post("/createUser", (req, res) => {
 });
 
 
+// API para realizar una reserva
+app.post("/reservarDispositivo", (req, res) => {
+    const sql = "INSERT INTO `Reserva` (`idUsuario`, `idDispositivo`) VALUES (?)";
+    const values = [
+        req.body.idUsuario,    // ID del usuario que realiza la reserva
+        req.body.idDispositivo // ID del dispositivo reservado
+    ];
+    db.query(sql, [values], (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.json("Error al realizar la reserva");
+        }
+        return res.json("Reserva realizada exitosamente");
+    });
+});
+
+
 app.listen(8081,() => {
     console.log("Listening ");
 })
