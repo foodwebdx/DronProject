@@ -113,6 +113,48 @@ app.get('/auth', (req, res) => {
     });
 });
 
+app.get('/readDispositivo', (req, res) => {
+    // Consulta SQL para obtener todos los dispositivos
+    const sql = `
+        SELECT 
+            idDispositivo, 
+            nombre, 
+            estado, 
+            ubicacion, 
+            fechaUltimaActividad 
+        FROM Dispositivo`;
+
+    db.query(sql, (err, result) => {
+        if (err) {
+            console.error('Error al obtener los dispositivos:', err);
+            res.status(500).json({ error: 'Error al obtener los dispositivos' });
+        } else if (result.length === 0) {
+            res.status(404).json({ error: 'No se encontraron dispositivos' });
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.get('/dispositivoInfo/:idDispositivo', (req, res) => {
+    const idDispositivo = req.params.idDispositivo;
+    
+    const sql = "SELECT idDispositivo, nombre, tipo, estado, ubicacion, nivelBateria, tiempoUsoTotal, fechaUltimaActividad, capacidadCarga FROM Dispositivo WHERE idDispositivo = ?";
+    
+    db.query(sql, [idDispositivo], (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.json("Error");
+        }
+
+        if (data.length === 0) {
+            return res.json({ message: "Dispositivo no encontrado" });
+        }
+
+        return res.json(data[0]);
+    });
+});
+
 
 
 

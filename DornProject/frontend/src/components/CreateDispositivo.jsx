@@ -16,6 +16,7 @@ function CreateDispositivo() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        const formattedDate = new Date(fechaUltimaActividad).toISOString().split('T')[0]; 
 
         axios.post('http://localhost:8081/createDispositivo', {
             nombre,
@@ -24,7 +25,7 @@ function CreateDispositivo() {
             ubicacion,
             nivelBateria,
             tiempoUsoTotal,
-            fechaUltimaActividad,
+            fechaUltimaActividad: formattedDate,
             capacidadCarga
         })
         .then(res => {
