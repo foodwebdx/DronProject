@@ -98,7 +98,7 @@ function Login() {
         else{
             alert("Success");
             setTries(0);
-            navigate('/');
+            navigate('/mainpage');
         }
     };
 
