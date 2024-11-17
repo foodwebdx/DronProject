@@ -1,30 +1,105 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/login.css'; // Importa los estilos
 
 function Login() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [tries, setTries] = useState(0);
+    const [correoInstitucional, SetCorreo] = useState('');
+    const [contraseña, SetContraseña] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [mensaje, setMensaje] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    function isEmailFormatted(mail){
+        if(mail.includes('javerianacali.edu.co')){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    async function mailExists(correoInstitucional) {
+        try {
+            const response = await axios.get('http://localhost:8081/mailExists', {
+                params: { correoInstitucional }
+            });
+
+            return response.data; // true if exists, false if not
+        } catch (error) {
+            console.error("Error:", error);
+            return false; // or handle error as needed
+        }
+    }
+    
+    async function authentication(correoInstitucional, constraseña) {
+        try {
+            const response = await axios.get('http://localhost:8081/auth', {
+                params: { correoInstitucional , contraseña}
+            });
+
+            return response.data; // true if exists, false if not
+        } catch (error) {
+            console.error("Error:", error);
+            return false; // or handle error as needed
+        }
+    }
+
+    async function sendNotification(correoInstitucional, mensaje){
+        try{
+            const response = await axios.post('http://localhost:8081/notif', {
+                mensaje,
+                correoInstitucional
+            });
+            return response.data;
+        }
+        catch(error){
+            console.error("Error:", error);
+            return false;
+        }
+    }
+
+    const handleLogin = async (e) => {
         e.preventDefault();
 
+        let ErrorDetected = false;
+        let mensaje = "";
+        let sent = false;
         setLoading(true);
         setError(false);
 
-        // Simulación de validación (reemplaza con tu lógica de autenticación)
-        setTimeout(() => {
-            if (email === 'test@example.com' && password === 'password123') {
+        if (!isEmailFormatted(correoInstitucional)) {
+            alert("Email must @javerianacali.edu.co.");
+            ErrorDetected = true; 
+        }
+        else if (!(await mailExists(correoInstitucional))) {
+            alert("Email does not exist. Please check again");
+            ErrorDetected = true;
+        }
+
+        if (ErrorDetected) {             
+            setLoading(false);
+            return;} // Prevent form submission}
+
+        if (!(await authentication(correoInstitucional, contraseña))) {
+            setTries(tries + 1);
+            alert("Incorrect password. You have " + (2 - tries) + " tries left.");
+            if (tries < 2){
                 setLoading(false);
-                navigate('/dashboard'); // Cambia la ruta al dashboard o a la página deseada
-            } else {
-                setLoading(false);
-                setError(true);
+                mensaje = "El usuario " +correoInstitucional+ " tuvo 3 intentos de sesion fallidos.";
+                if (!sent){
+                    sendNotification(correoInstitucional, mensaje);
+                    sent = true;
+                }
             }
-        }, 1500); // Simula un tiempo de espera de 1.5 segundos
+        }
+        else{
+            alert("Success");
+            setTries(0);
+            navigate('/');
+        }
     };
 
     return (
@@ -34,15 +109,15 @@ function Login() {
                 <input
                     type="email"
                     placeholder="Correo electrónico"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={correoInstitucional}
+                    onChange={(e) => SetCorreo(e.target.value)}
                     required
                 />
                 <input
                     type="password"
                     placeholder="Contraseña"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={contraseña}
+                    onChange={(e) => SetContraseña(e.target.value)}
                     required
                 />
                 {loading ? (

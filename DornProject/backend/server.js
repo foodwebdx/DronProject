@@ -51,6 +51,53 @@ app.post("/reservarDispositivo", (req, res) => {
     });
 });
 
+// API para añadir una notificacion
+app.post("/notif", (req, res) => {
+    const sql = "INSERT INTO `Notificaciones` (`mensaje`, `correoInstitucional`) VALUES (?)";
+    const values = [
+        req.body.mensaje,
+        req.body.correoInstitucional
+    ]
+    db.query(sql, [values], (err, data) => {
+        if (err) {
+            console.error(err); // Muestra el error en la consola
+            return res.json("Error");
+        }
+        return res.json("data se mando de manera exitosa");
+    });
+});
+
+
+//Get API CALLS
+// API para validar usuario existe
+app.get('/mailExists', (req, res) => {
+    const sql = "SELECT * FROM Usuario WHERE correoInstitucional = ?";
+    db.query(sql, [req.query.correoInstitucional], (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        return res.json(data.length > 0); // true if email found, false if not
+    });
+});
+
+// API para validar usuario y contraseña
+app.get('/auth', (req, res) => {
+    const sql = "SELECT * FROM Usuario WHERE correoInstitucional = ? AND contraseña = ?";
+    db.query(sql, [req.query.correoInstitucional, req.query.contraseña], (err, data) => {
+        if (err) {
+            return res.json("Error");
+        }
+        return res.json(data.length > 0); // true if email and password match, false if not
+    });
+});
+
+
+
+
+//Puts API Calls
+
+//Deletes API Calls
+
 
 app.listen(8081,() => {
     console.log("Listening ");

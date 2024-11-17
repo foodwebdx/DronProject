@@ -36,3 +36,9 @@ CREATE TABLE Servicio (
     idDispositivo INT,
     FOREIGN KEY (idDispositivo) REFERENCES Dispositivo(idDispositivo) ON DELETE CASCADE
 );
+
+CREATE TABLE Notificaciones(
+    idNotificacion INT PRIMARY KEY AUTO_INCREMENT,
+    mensaje VARCHAR(255),
+    correoInstitucional VARCHAR(50) NOT NULL
+);
