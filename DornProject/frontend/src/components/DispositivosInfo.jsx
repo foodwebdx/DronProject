@@ -31,7 +31,7 @@ function DispositivoInfo() {
                         <p><strong>Tipo:</strong> {dispositivo.tipo}</p>
                         <p><strong>Estado:</strong> {dispositivo.estado}</p>
                         <p><strong>Ubicación:</strong> {dispositivo.ubicacion || 'No Disponible'}</p>
-                        <p><strong>Nivel de Batería:</strong> {dispositivo.nivelBateria || 'No Disponible'}</p>
+                        <p><strong>Nivel de Batería:</strong> {dispositivo.nivelBateria + "%"|| 'No Disponible'}</p>
                         <p><strong>Tiempo de Uso Total:</strong> {dispositivo.tiempoUsoTotal || 'No Disponible'}</p>
                         <p><strong>Fecha Última Actividad:</strong> {dispositivo.fechaUltimaActividad || 'No Disponible'}</p>
                         <p><strong>Capacidad de Carga:</strong> {dispositivo.capacidadCarga} kg</p>
