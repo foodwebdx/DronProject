@@ -1,0 +1,188 @@
+/* Eliminamos márgenes y paddings que puedan crear espacios no deseados */
+body {
+    background: linear-gradient(90deg, #eaf2f8, #ffffff); /* Azul claro a blanco */
+    margin: 0;
+    padding: 40px 0 0 0; /* El espacio superior es igual a la altura de la barra */
+  }
+  
+  
+  /* Barra de navegación */
+  .main-nav {
+    background-color: #1e3a8a; /* Azul oscuro */
+    padding: 10px 0;
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    width: 100%; /* Ocupa todo el ancho */
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+    text-align: center;
+    
+  }
+  
+  .main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .main-nav li {
+    margin: 0 55px;
+  }
+  
+  .main-nav a {
+    color: #ffffff; /* Blanco */
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px;
+    display: block;
+  }
+  
+  .main-nav a:hover {
+    background-color: #3b82f6; /* Azul claro */
+    border-radius: 5px; /* Bordes redondeados */
+  }
+  
+
+  
+  /* Sección Hero */
+  .hero-section {
+    margin-top: 48vw;
+    width: 100vw;
+    height: 70vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    transition: background-image 1s ease-in-out;
+    margin-bottom: 0; /* Asegura que no haya espacio extra */
+  }
+  
+  .hero-section .overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    color: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px;
+  }
+  
+  .hero-section h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: rgb(221, 224, 213);
+  }
+  
+  .hero-section p {
+    font-size: 1.2em;
+    max-width: 600px;
+  }
+  
+  /* Contenedor principal de bienvenida */
+/* Contenedor principal de bienvenida */
+.welcome-section {
+    background-color: #f3f4f6; /* Fondo gris claro */
+    border: 2px solid #1e3a8a; /* Borde azul oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 20px; /* Espaciado interno */
+    margin: 60px auto; /* Aumenta el margen superior para separar de la línea gris */
+    max-width: 800px; /* Limita el ancho */
+  }
+  
+  /* Texto de bienvenida */
+  .welcome-text h1 {
+    font-size: 2em; /* Título destacado */
+    color: #1e3a8a; /* Azul oscuro */
+    text-align: center; /* Centra el título */
+    margin-bottom: 20px;
+  }
+  
+  .welcome-text p {
+    margin-bottom: 15px; /* Espaciado entre párrafos */
+    color: #374151; /* Gris oscuro */
+    line-height: 1.6; /* Espaciado entre líneas */
+    text-align: justify; /* Justifica el texto */
+  }
+  
+  /* Footer */
+  .footer-bar {
+    background-color: #1e3a8a; /* Azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    padding: 20px 10px; /* Espaciado interno */
+    text-align: center; /* Centra el texto */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    font-size: 1em; /* Tamaño estándar del texto */
+    margin-top: 20px; /* Espaciado superior */
+    border-top: 2px solid #1e3a8a; /* Línea divisora superior */
+  }
+  
+  .footer-bar a {
+    color: #f3f4f6; /* Blanco humo para enlaces */
+    text-decoration: underline; /* Subrayado para indicar clickeable */
+    font-weight: bold; /* Negrita para resaltar */
+  }
+  
+  .footer-bar a:hover {
+    color: #3b82f6; /* Azul claro al pasar el mouse */
+    text-decoration: none; /* Quita el subrayado al pasar el mouse */
+  }
+  
+  .footer-content p {
+    margin: 10px 0; /* Espaciado entre párrafos */
+    line-height: 1.6; /* Mejora la legibilidad */
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .welcome-section {
+      padding: 15px; /* Reduce el padding en pantallas pequeñas */
+    }
+  
+    .hero-section h1 {
+      font-size: 2.5em; /* Reduce el tamaño del título */
+    }
+  
+    .hero-section p {
+      font-size: 1em; /* Ajusta el tamaño del texto */
+    }
+  }
+  .map-container {
+    background-image: url('./images/Fondo1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 40px auto;
+     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  }
+  
+  .map-title {
+    color: #1e3a8a; /* Azul oscuro */
+    font-size: 1.5em; /* Tamaño del título */
+    text-align: center; /* Centra el texto */
+    margin-bottom: 10px; /* Espacio debajo del título */
+  }
+  .map-section {
+  background-color: #f3f4f6;
+  padding: 40px 0;
+}
+
+  
+  .map-description {
+    color: #374151; /* Gris oscuro */
+    text-align: center; /* Centra el texto */
+    margin-bottom: 3vw; /* Espacio debajo de la descripción */
+    font-size: 1em; /* Tamaño estándar del texto */
+  }
+  
+  .map-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+    transform: scale(1.02); /* Escala ligeramente el contenedor */
+    transition: all 0.3s ease-in-out; /* Suaviza la transición */
+  }
+  
