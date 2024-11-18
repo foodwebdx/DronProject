@@ -8,6 +8,8 @@ import Dispositivos from './Dispositivos';
 import DispositivoInfo from './DispositivosInfo';
 import AdminPage from './AdminMainInterface';
 import AlertNotifications from './notificaciones';
+import Sidebar from './Sidebar';
+
 
 function RoutesNav() {
     return (
@@ -27,6 +29,8 @@ function RoutesNav() {
                     <Route path='/dispositivoInfo/:idDispositivo' element={<DispositivoInfo />} />
                     <Route path='/AdminMainInterface' element={<AdminPage />} />
                     <Route path='/notificaciones' element={<AlertNotifications />} />
+                    <Route path='/Sidebar' element={<Sidebar />} />
+
                 </Routes>
             </BrowserRouter>
         </div>

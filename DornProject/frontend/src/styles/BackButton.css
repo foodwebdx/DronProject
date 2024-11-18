@@ -1,0 +1,21 @@
+/* Estilo del botón de regresar */
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: #1e3d8f;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    z-index: 1000; /* Asegura que el botón esté siempre visible */
+  }
+  
+  .back-button:hover {
+    background-color: #1a2e5a;
+    transform: scale(1.05);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  

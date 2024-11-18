@@ -1,0 +1,104 @@
+/* Estilo para el Sidebar */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa; /* Fondo del body */
+}
+
+/* Contenedor principal para el Sidebar y el contenido */
+.App {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(135deg, #4e73df, #1e3d8f); /* Gradiente atractivo */
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 10px 0 0 10px; /* Bordes redondeados */
+  position: relative;
+  height: 100%;
+}
+
+/* Título del Sidebar */
+.sidebar-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Lista de elementos del Sidebar */
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 15px;
+}
+
+/* Estilo de los botones */
+.sidebar-link {
+  display: block;
+  padding: 12px;
+  background-color: #1e3d8f;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto de hover */
+.sidebar-link:hover {
+  background-color: #1a2e5a;
+  transform: scale(1.05);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del botón de Logout */
+.logout-button {
+  background-color: #ff5c8f; /* Color de logout */
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  margin-top: auto;
+}
+
+.logout-button:hover {
+  background-color: #e14e7c;
+  transform: scale(1.05);
+}
+
+/* Estilo de las secciones de contenido (por ejemplo: el historial) */
+.historial {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 0 15px 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
