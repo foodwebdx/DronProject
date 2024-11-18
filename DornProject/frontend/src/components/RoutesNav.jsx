@@ -6,6 +6,7 @@ import FormularioReserva from './FormularioReserva';
 import CreateDispositivo from './CreateDispositivo';
 import Dispositivos from './Dispositivos';
 import DispositivoInfo from './DispositivosInfo';
+import Sidebar from './Sidebar';
 
 
 function RoutesNav() {
@@ -24,6 +25,7 @@ function RoutesNav() {
                     <Route path="/CreateDispositivo" element={<CreateDispositivo/>} />
                     <Route path="Dispositivos" element={<Dispositivos/>} />
                     <Route path='/dispositivoInfo/:idDispositivo' element={<DispositivoInfo />} />
+                    <Route path='/Sidebar' element={<Sidebar />} />
                 </Routes>
             </BrowserRouter>
         </div>

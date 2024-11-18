@@ -1,48 +1,135 @@
-
-#root {
-  width: 100%;
-  height: 100%;
+/* Estilos generales */
+body {
   margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0; 
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #ffffff; 
+}
+
+.content {
+  display: flex;
+  flex: 1; /* Asegura que el contenido ocupe el espacio disponible */
+}
+
+.sidebar {
+  width: 200px; /* Reducido para hacer el menú más pequeño */
+  background-color: #333; 
+  color: white;
+  padding: 15px; /* Espaciado reducido */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed; /* Sidebar fijo a la izquierda */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+}
+
+.sidebar ul {
+  list-style-type: none;
   padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 8px; /* Espaciado reducido */
+}
+
+.sidebar ul li button {
+  width: 100%;
+  padding: 8px; /* Espaciado reducido */
+  background-color: #444;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px; /* Bordes redondeados */
+  text-align: left; /* Alineación del texto a la izquierda */
+}
+
+.sidebar ul li button:hover {
+  background-color: #555;
+}
+
+.logout-button {
+  margin-top: 20px;
+  background-color: #e74c3c; 
+  border: none;
+  padding: 8px; /* Espaciado reducido */
+  width: 100%;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.logout-button:hover {
+  background-color: #c82333; 
+}
+
+.historial {
+  margin-left: 200px; /* Ajusta el margen para que coincida con el nuevo ancho del sidebar */
+  flex: 1;
+  padding: 20px;
+  background-color: #d3d3d3; 
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5; /* Fondo general */
+  box-sizing: border-box;
+  position: relative;
 }
 
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Modo oscuro */
+.dark-mode {
+  background-color: #181818;
+  color: #e0e0e0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dark-mode .sidebar {
+  background-color: #222; /* Sidebar más oscuro */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.dark-mode .sidebar ul li button {
+  background-color: #333;
 }
 
-.card {
-  padding: 2em;
+.dark-mode .sidebar ul li button:hover {
+  background-color: #444;
 }
 
-.read-the-docs {
-  color: #888;
+.dark-mode .logout-button {
+  background-color: #e74c3c;
 }
+
+.dark-mode .historial {
+  background-color: #2c2c2c; 
+}
+
+.toggle-dark-mode {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toggle-dark-mode:hover {
+  background-color: #0056b3;
+}
+
+/* Para colocar el botón en la parte superior derecha en lugar de inferior derecha */
+.toggle-dark-mode.top {
+  top: 20px;
+  bottom: unset;
+}
+

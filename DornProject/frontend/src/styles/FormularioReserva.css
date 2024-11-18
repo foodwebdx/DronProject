@@ -1,54 +1,120 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #e9e9e9;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e9e9e9;
+  position: relative; /* Necesario para que las gotas de lluvia estén posicionadas correctamente */
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 20px;
+  background: rgb(255, 255, 255);
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Esto asegura que la lluvia esté encima del contenedor */
+  overflow: hidden; /* Hace que las gotas no salgan del contenedor */
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.form-container.animar {
+  background-color: #ffcccb; /* Color de fondo rojo suave para alertar */
+  transform: scale(1.05); /* Levemente agrandar la caja */
+  animation: parpadeo 1s infinite; /* Animación de parpadeo */
+}
+
+@keyframes parpadeo {
+  0% {
+    opacity: 1;
   }
-  
-  .form-container {
-    max-width: 400px;
-    margin: 10px auto;
-    padding: 20px;
-    background: rgb(255, 255, 255);
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  50% {
+    opacity: 0.5;
   }
-  
-  h1 {
-    text-align: center;
-    color: #333;
+  100% {
+    opacity: 1;
   }
-  
-  form {
-    display: flex;
-    flex-direction: column;
+}
+
+.error {
+  color: #ff4d4d;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Animación lluvia */
+.rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none; /* Esto asegura que las gotas de lluvia no interfieran con la interacción del usuario */
+  z-index: -1; /* Asegura que la lluvia quede detrás del contenido */
+}
+
+.drop {
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6); /* Gotas de lluvia blancas y sutiles */
+  animation: rainDrop 0.5s linear infinite;
+}
+
+@keyframes rainDrop {
+  0% {
+    transform: translateY(-100vh); /* Inicia fuera de la pantalla */
   }
-  
-  label {
-    margin-bottom: 5px;
-    font-weight: bold;
+  100% {
+    transform: translateY(100vh); /* Caen hasta el fondo de la pantalla */
   }
-  
-  input,
-  select,
-  textarea {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  button {
-    padding: 10px;
-    background-color: #007bff;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
+}
+
+/* Variación aleatoria de las gotas */
+.drop:nth-child(odd) {
+  animation-duration: 0.7s;
+  animation-delay: -0.5s;
+}
+
+.drop:nth-child(even) {
+  animation-duration: 0.6s;
+  animation-delay: -0.3s;
+}

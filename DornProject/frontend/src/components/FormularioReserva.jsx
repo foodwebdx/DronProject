@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/FormularioReserva.css';
 
@@ -13,6 +13,32 @@ function FormularioReserva() {
     const [ciudad, setCiudad] = useState('');
     const [clima, setClima] = useState(null);
     const [error, setError] = useState('');
+    const [animar, setAnimar] = useState(false);
+
+    useEffect(() => {
+        if (animar) {
+            // Función para generar gotas de lluvia
+            const generateRain = () => {
+                const rainContainer = document.querySelector('.rain');
+                for (let i = 0; i < 100; i++) {
+                    const drop = document.createElement('div');
+                    drop.classList.add('drop');
+                    drop.style.left = `${Math.random() * 100}vw`; // Gotas aleatorias en el eje X
+                    drop.style.animationDuration = `${Math.random() * 2 + 0.5}s`; // Duración aleatoria
+                    drop.style.animationDelay = `${Math.random() * 2}s`; // Retardo aleatorio
+                    rainContainer.appendChild(drop);
+                }
+            };
+
+            generateRain();
+        }
+
+        // Limpiar gotas después de 5 segundos
+        setTimeout(() => {
+            setAnimar(false); // Detener la lluvia
+        }, 5000);
+
+    }, [animar]);
 
     const handleCheckWeather = async () => {
         try {
@@ -22,7 +48,7 @@ function FormularioReserva() {
             if (data.cod === 200) {
                 const currentWeather = data.weather[0].description.toLowerCase();
                 setClima(currentWeather);
-                console.log('Descripción del clima:', currentWeather);  // Imprimir la descripción en la consola
+                console.log('Descripción del clima:', currentWeather);
                 return currentWeather;
             } else {
                 setError('Ciudad no encontrada. Verifica el nombre e inténtalo de nuevo.');
@@ -38,10 +64,12 @@ function FormularioReserva() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setAnimar(false);
 
         const weatherCondition = await handleCheckWeather();
-        if (weatherCondition && (weatherCondition.includes('rain') || weatherCondition.includes('storm'))) {
+        if (weatherCondition && (weatherCondition.includes('overcast clouds') || weatherCondition.includes('storm'))) {
             setError('No puedes realizar la reserva debido a las condiciones climáticas.');
+            setAnimar(true);
             return;
         }
 
@@ -57,7 +85,8 @@ function FormularioReserva() {
     };
 
     return (
-        <div className="form-container">
+        <div className={`form-container ${animar ? 'animar' : ''}`}>
+            <div className="rain"></div> {/* Contenedor de gotas de lluvia */}
             <h1>Reserva de Dispositivos</h1>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
@@ -92,3 +121,4 @@ function FormularioReserva() {
 }
 
 export default FormularioReserva;
+
