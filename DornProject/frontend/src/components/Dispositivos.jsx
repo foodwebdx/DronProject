@@ -22,6 +22,7 @@ function Dispositivos() {
     return (
         <div className='dispositivo-container'>
             <div className='dispositivo-content'>
+                <h1 className="dispositivo-title">Dispositivos</h1> {/* Título agregado */}
                 <Link to="/createDispositivo" className='dispositivo-add-btn'>Add +</Link>
                 <table className='dispositivo-table'>
                     <thead>
