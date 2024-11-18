@@ -102,16 +102,20 @@ app.get('/mailExists', (req, res) => {
     });
 });
 
-// API para validar usuario y contraseña
 app.get('/auth', (req, res) => {
-    const sql = "SELECT * FROM Usuario WHERE correoInstitucional = ? AND contraseña = ?";
+    const sql = "SELECT rol FROM Usuario WHERE correoInstitucional = ? AND contraseña = ?";
     db.query(sql, [req.query.correoInstitucional, req.query.contraseña], (err, data) => {
         if (err) {
-            return res.json("Error");
+            return res.json({ success: false, message: "Error del servidor" });
         }
-        return res.json(data.length > 0); // true if email and password match, false if not
+        if (data.length > 0) {
+            return res.json({ success: true, rol: data[0].rol }); // Devuelve el rol si coincide
+        } else {
+            return res.json({ success: false, message: "Credenciales incorrectas" });
+        }
     });
 });
+
 
 app.get('/readDispositivo', (req, res) => {
     // Consulta SQL para obtener todos los dispositivos
@@ -155,8 +159,34 @@ app.get('/dispositivoInfo/:idDispositivo', (req, res) => {
     });
 });
 
+app.get('/NotificacionesYalertas', (req, res) => {
+    const query = 'SELECT idNotificacion, mensaje, correoInstitucional FROM notificaciones ORDER BY idNotificacion DESC';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error al obtener notificaciones:', err);
+            res.status(500).send('Error en el servidor');
+        } else {
+            res.json(results); // Envía las notificaciones en formato JSON
+        }
+    });
+});
 
+app.delete('/borrar/:id', (req, res) => {
+    const { id } = req.params;
 
+    const query = 'DELETE FROM notificaciones WHERE idNotificacion = ?';
+
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error al eliminar la notificación:', err);
+            res.status(500).send('Error al eliminar la notificación.');
+        } else if (result.affectedRows === 0) {
+            res.status(404).send('No se encontró la notificación con el ID especificado.');
+        } else {
+            res.status(200).send('Notificación eliminada exitosamente.');
+        }
+    });
+});
 
 //Puts API Calls
 

@@ -1,0 +1,121 @@
+/* Contenedor azul claro que centra el contenido */
+/* Estilo para el fondo de la página */
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('./images/fondoAdmin2.png'); /* Ruta de la imagen */
+    background-size: cover; /* Hace que la imagen cubra todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Fija la imagen al fondo mientras se desplaza */
+    font-family: 'Arial', sans-serif; /* Fuente estándar */
+    flex-direction: column; /* Organiza el contenido en columna */
+    min-height: 100vh; /* Garantiza que ocupe al menos toda la altura del viewport */
+}
+  
+  
+/* Contenedor principal */
+.admin-wrapper {
+    background-color: #eaf2f8; /* Fondo azul claro */
+    border-radius: 15px; /* Bordes redondeados */
+    padding: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
+    max-width: 900px;
+    margin: 20px auto; /* Centrado horizontal */
+    text-align: center;
+  }
+  
+  /* Tarjetas del menú */
+  .admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 20px; /* Espaciado entre las tarjetas */
+  }
+  
+  /* Tarjetas individuales */
+  .admin-card {
+    background-color: #ffffff; /* Fondo blanco */
+    border: 2px solid #eaf2f8; /* Borde azul claro */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    display: flex;
+    flex-direction: column; /* Alinea verticalmente el contenido */
+    justify-content: center; /* Centra el contenido */
+    align-items: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Indica que es clickeable */
+  }
+  .admin-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: #eef4fb; /* Fondo más claro en hover */
+  }
+  
+  
+  
+  /* Íconos dentro de las tarjetas */
+  .admin-card i {
+    font-size: 2.5em; /* Tamaño del ícono */
+    color: #1e3a8a; /* Azul oscuro */
+    margin-bottom: 10px; /* Espaciado entre ícono y título */
+  }
+  
+  /* Títulos dentro de las tarjetas */
+  .admin-card h2 {
+    color: #1e3a8a; /* Azul oscuro */
+    font-size: 1.2em;
+    margin: 0;
+  }
+  
+  /* Efecto hover en las tarjetas */
+  .admin-card:hover {
+    transform: translateY(-5px) scale(1.05); /* Levanta la tarjeta */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+    background-color: #eef4fb; /* Fondo más claro en hover */
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .admin-grid {
+      grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+    }
+  }
+/* Footer */
+.admin-footer {
+    background-color: #1e3a8a; /* Azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    text-align: center; /* Centra el texto */
+    padding: 20px 10px; /* Espaciado interno */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra superior */
+    font-size: 0.9em; /* Tamaño del texto */
+}
+
+.admin-footer a {
+    color: #f3f4f6; /* Blanco humo para enlaces */
+    text-decoration: underline; /* Subrayado */
+}
+
+.admin-footer a:hover {
+    color: #3b82f6; /* Azul claro al pasar el mouse */
+    text-decoration: none; /* Quita el subrayado */
+}
+    /* Barra de estado */
+.status-bar {
+    background-color: #1e3a8a; /* Azul oscuro */
+    color: #ffffff; /* Texto blanco */
+    display: flex;
+    justify-content: space-between; /* Distribuye contenido a los lados */
+    align-items: center; /* Centra verticalmente */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 0.9em; /* Tamaño de texto pequeño */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+  }
+  
+  .status-bar .left {
+    font-weight: bold; /* Negrita para el estado */
+  }
+  
+  .status-bar .right {
+    font-style: italic; /* Cursiva para la fecha */
+  }

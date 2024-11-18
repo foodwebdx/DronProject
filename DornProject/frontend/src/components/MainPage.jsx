@@ -25,7 +25,7 @@ const MainPage = () => {
       {/* Menú de navegación principal */}
       <nav className="main-nav">
         <ul>
-          <li><a href="#reservas">Reservas</a></li>
+          <li><a href="./login">Empezar</a></li>
           <li><a href="#tecnologia">Tecnología</a></li>
           <li><a href="#noticias">Noticias</a></li>
           <li><a href="#faq">Preguntas Frecuentes</a></li>

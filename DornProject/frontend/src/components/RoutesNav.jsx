@@ -6,7 +6,8 @@ import FormularioReserva from './FormularioReserva';
 import CreateDispositivo from './CreateDispositivo';
 import Dispositivos from './Dispositivos';
 import DispositivoInfo from './DispositivosInfo';
-
+import AdminPage from './AdminMainInterface';
+import AlertNotifications from './notificaciones';
 
 function RoutesNav() {
     return (
@@ -24,6 +25,8 @@ function RoutesNav() {
                     <Route path="/CreateDispositivo" element={<CreateDispositivo/>} />
                     <Route path="Dispositivos" element={<Dispositivos/>} />
                     <Route path='/dispositivoInfo/:idDispositivo' element={<DispositivoInfo />} />
+                    <Route path='/AdminMainInterface' element={<AdminPage />} />
+                    <Route path='/notificaciones' element={<AlertNotifications />} />
                 </Routes>
             </BrowserRouter>
         </div>

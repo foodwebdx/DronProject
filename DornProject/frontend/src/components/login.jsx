@@ -34,18 +34,19 @@ function Login() {
         }
     }
     
-    async function authentication(correoInstitucional, constraseña) {
+    async function authentication(correoInstitucional, contraseña) {
         try {
             const response = await axios.get('http://localhost:8081/auth', {
-                params: { correoInstitucional , contraseña}
+                params: { correoInstitucional, contraseña }
             });
-
-            return response.data; // true if exists, false if not
+    
+            return response.data; // Devuelve la respuesta completa
         } catch (error) {
-            console.error("Error:", error);
-            return false; // or handle error as needed
+            console.error("Error en la autenticación:", error);
+            return { success: false }; // Devuelve un objeto con `success: false` si hay un error
         }
     }
+    
 
     async function sendNotification(correoInstitucional, mensaje){
         try{
@@ -63,44 +64,44 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
+    
         let ErrorDetected = false;
-        let mensaje = "";
-        let sent = false;
         setLoading(true);
         setError(false);
-
+    
         if (!isEmailFormatted(correoInstitucional)) {
-            alert("Email must @javerianacali.edu.co.");
-            ErrorDetected = true; 
-        }
-        else if (!(await mailExists(correoInstitucional))) {
-            alert("Email does not exist. Please check again");
+            alert("El correo debe incluir @javerianacali.edu.co.");
+            ErrorDetected = true;
+        } else if (!(await mailExists(correoInstitucional))) {
+            alert("El correo no existe. Verifica nuevamente.");
             ErrorDetected = true;
         }
-
-        if (ErrorDetected) {             
+    
+        if (ErrorDetected) {
             setLoading(false);
-            return;} // Prevent form submission}
-
-        if (!(await authentication(correoInstitucional, contraseña))) {
+            return;
+        }
+    
+        const authResult = await authentication(correoInstitucional, contraseña);
+        if (!authResult.success) {
             setTries(tries + 1);
-            alert("Incorrect password. You have " + (2 - tries) + " tries left.");
-            if (tries < 2){
-                setLoading(false);
-                mensaje = "El usuario " +correoInstitucional+ " tuvo 3 intentos de sesion fallidos.";
-                if (!sent){
-                    sendNotification(correoInstitucional, mensaje);
-                    sent = true;
-                }
+            alert("Contraseña incorrecta. Te quedan " + (2 - tries) + " intentos.");
+            if (tries === 2) {
+                sendNotification(correoInstitucional, `El usuario ${correoInstitucional} tuvo 3 intentos fallidos.`);
+            }
+            setLoading(false);
+        } else {
+            setTries(0);
+    
+            // Redirige según el rol
+            if (authResult.rol === "Administrador") {
+                navigate('/AdminMainInterface'); // Redirige a la página del administrador
+            } else {
+                navigate('/MainPage'); // Redirige a la página principal
             }
         }
-        else{
-            alert("Success");
-            setTries(0);
-            navigate('/mainpage');
-        }
     };
+    
 
     return (
         <div className={`login-container ${error ? 'shake' : ''}`}>
