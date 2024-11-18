@@ -15,15 +15,23 @@ function Dispositivos() {
             .catch(err => console.log(err));
     }, []);
 
-    const handleNavigateBack = () => {
-        navigate('/app'); // Navegar a la pantalla anterior
+    const handleNavigateToSidebar = () => {
+        navigate('/Sidebar'); // Navegar al sidebar
     };
 
     return (
         <div className='dispositivo-container'>
             <div className='dispositivo-content'>
                 <h1 className="dispositivo-title">Dispositivos</h1> {/* Título agregado */}
-                <Link to="/createDispositivo" className='dispositivo-add-btn'>Add +</Link>
+                <div className="buttons-container">
+                    <Link to="/createDispositivo" className='dispositivo-add-btn'>Add +</Link>
+                    <button 
+                        type="button" 
+                        className="btn btn-secondary" 
+                        onClick={handleNavigateToSidebar}>
+                        Regresar
+                    </button>
+                </div>
                 <table className='dispositivo-table'>
                     <thead>
                         <tr>
@@ -52,7 +60,6 @@ function Dispositivos() {
                         }
                     </tbody>
                 </table>
-                <button type='button' className='btn btn-secondary' onClick={handleNavigateBack}>Atrás</button>
             </div>
         </div>
     );

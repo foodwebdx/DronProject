@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Importamos Link para el botón de regresar
 import '../Styles/CreateUser.css';
 
-function CreateUser(){
+function CreateUser() {
     const [nombreCompleto, SetNombreCompleto] = useState('');
     const [PrimerNombre, SetPrimerNombre] = useState('');
     const [Apellido1, SetApellido1] = useState('');
@@ -14,29 +14,25 @@ function CreateUser(){
     const [numeroContacto, SetTelefono] = useState('');    
     const navigate = useNavigate();
 
-    //Checks if password is valid
     function isPasswordValid(password) {
         if (password.length < 8 || password.length > 20) {
-            return false; // Invalid password
+            return false;
         }
-        return true; // Valid password
+        return true;
     }
 
-    //Check if mail is institutional
-    function isEmailValid(mail){
-        if(mail.includes('javerianacali.edu.co')){
+    function isEmailValid(mail) {
+        if (mail.includes('javerianacali.edu.co')) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    function isRoleValid(role){
-        if(role === 'Administrador' || role === 'Usuario'){
+    function isRoleValid(role) {
+        if (role === 'Administrador' || role === 'Usuario') {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -53,16 +49,18 @@ function CreateUser(){
         }
         
         if (!isEmailValid(correoInstitucional)) {
-            alert("Email must @javerianacali.edu.co.");
+            alert("Email must include @javerianacali.edu.co.");
             ErrorDetected = true; 
         }
 
         if (!isRoleValid(rol)) {
-            alert("Rol must be Admin or Usuario.");
+            alert("Role must be Admin or Usuario.");
             ErrorDetected = true; 
         }
 
-        if (ErrorDetected) { return;} // Prevent form submission}
+        if (ErrorDetected) {
+            return;
+        }
 
         fullName = PrimerNombre + ' ' + Apellido1 + ' ' + Apellido2;
         SetNombreCompleto(fullName);
@@ -84,6 +82,9 @@ function CreateUser(){
     return (
         <div className='user-container'>
             <div className='user-content'>
+                {/* Botón de regresar */}
+                <Link to="/sidebar" className="back-button">Regresar</Link>
+
                 <form onSubmit={handleSubmit}> 
                     <h2>Create New User</h2>
                     <div className='text-input'>
@@ -153,6 +154,5 @@ function CreateUser(){
         </div>
     );
 }
-
 
 export default CreateUser;

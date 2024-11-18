@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Importamos Link para el botón
 import '../styles/FormularioReserva.css';
 
 const api = {
@@ -17,15 +18,14 @@ function FormularioReserva() {
 
     useEffect(() => {
         if (animar) {
-            // Función para generar gotas de lluvia
             const generateRain = () => {
                 const rainContainer = document.querySelector('.rain');
                 for (let i = 0; i < 100; i++) {
                     const drop = document.createElement('div');
                     drop.classList.add('drop');
-                    drop.style.left = `${Math.random() * 100}vw`; // Gotas aleatorias en el eje X
-                    drop.style.animationDuration = `${Math.random() * 2 + 0.5}s`; // Duración aleatoria
-                    drop.style.animationDelay = `${Math.random() * 2}s`; // Retardo aleatorio
+                    drop.style.left = `${Math.random() * 100}vw`;
+                    drop.style.animationDuration = `${Math.random() * 2 + 0.5}s`;
+                    drop.style.animationDelay = `${Math.random() * 2}s`;
                     rainContainer.appendChild(drop);
                 }
             };
@@ -33,11 +33,9 @@ function FormularioReserva() {
             generateRain();
         }
 
-        // Limpiar gotas después de 5 segundos
         setTimeout(() => {
-            setAnimar(false); // Detener la lluvia
+            setAnimar(false);
         }, 5000);
-
     }, [animar]);
 
     const handleCheckWeather = async () => {
@@ -48,7 +46,6 @@ function FormularioReserva() {
             if (data.cod === 200) {
                 const currentWeather = data.weather[0].description.toLowerCase();
                 setClima(currentWeather);
-                console.log('Descripción del clima:', currentWeather);
                 return currentWeather;
             } else {
                 setError('Ciudad no encontrada. Verifica el nombre e inténtalo de nuevo.');
@@ -85,7 +82,10 @@ function FormularioReserva() {
 
     return (
         <div className={`form-container ${animar ? 'animar' : ''}`}>
-            <div className="rain"></div> {/* Contenedor de gotas de lluvia */}
+            {/* Botón de regresar */}
+            <Link to="/sidebar" className="back-button">Regresar</Link>
+
+            <div className="rain"></div>
             <h1>Reserva de Dispositivos</h1>
             {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
@@ -120,4 +120,3 @@ function FormularioReserva() {
 }
 
 export default FormularioReserva;
-
