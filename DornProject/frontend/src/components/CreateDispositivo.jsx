@@ -30,7 +30,7 @@ function CreateDispositivo() {
         })
         .then(res => {
             console.log(res);
-            navigate('/');
+            navigate('/Dispositivos');
         })
         .catch(err => console.log(err));
     }

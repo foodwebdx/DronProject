@@ -77,7 +77,6 @@ function FormularioReserva() {
             idUsuario,
             idDispositivo,
         })
-        .then(() => alert('Reserva realizada exitosamente.'))
         .catch((err) => {
             console.error(err);
             setError('Error al realizar la reserva. Intenta de nuevo más tarde.');
