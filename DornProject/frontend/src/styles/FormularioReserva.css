@@ -6,8 +6,9 @@ body {
   position: relative; /* Necesario para que las gotas de lluvia estén posicionadas correctamente */
 }
 
-.form-container {
-  max-width: 400px;
+.form-container1 {
+  
+  max-width: 500px;
   margin: 10px auto;
   padding: 20px;
   background: rgb(255, 255, 255);

@@ -102,3 +102,14 @@ body {
   text-align: center;
 }
 
+.sidebar-header {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+
+.sidebar-header .user-email {
+  font-size: 0.9em;
+  color: #ffffff;
+  margin-top: 5px;
+}

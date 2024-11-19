@@ -33,7 +33,9 @@ const AdminPage = () => {
             </div>
             <div className="admin-card">
               <FaUsers size={30} color="#1e3a8a" />
+              <a href="/CreateUser" className="admin-card-link">
               <h2>Gestión de Usuarios</h2>
+              </a>
             </div>
           </div>
         </div>

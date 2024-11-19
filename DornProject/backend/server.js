@@ -51,6 +51,67 @@ app.post("/reservarDispositivo", (req, res) => {
     });
 });
 
+app.post('/reservar', (req, res) => {
+    const { idDispositivo, correoInstitucional, fechaReserva } = req.body;
+
+    // Obtener el idUsuario basado en el correoInstitucional
+    const userQuery = "SELECT idUsuario FROM Usuario WHERE correoInstitucional = ?";
+    db.query(userQuery, [correoInstitucional], (err, userResults) => {
+        if (err) {
+            console.error("Error al obtener el ID del usuario:", err);
+            return res.status(500).json({ message: "Error al obtener el ID del usuario" });
+        }
+
+        if (userResults.length === 0) {
+            return res.status(400).json({ message: "Usuario no encontrado" });
+        }
+
+        const idUsuario = userResults[0].idUsuario;
+
+        // Verificar si el dispositivo ya está reservado en esa fecha
+        const checkQuery = `
+            SELECT * 
+            FROM Reserva
+            WHERE idDispositivo = ? AND fechaReserva = ?
+        `;
+        db.query(checkQuery, [idDispositivo, fechaReserva], (err, results) => {
+            if (err) {
+                console.error("Error al verificar disponibilidad:", err);
+                return res.status(500).json({ message: "Error al verificar la disponibilidad del dispositivo" });
+            }
+
+            if (results.length > 0) {
+                return res.status(400).json({ message: "El dispositivo ya está reservado para esa fecha" });
+            }
+
+            // Si está disponible, registrar la reserva
+            const logQuery = `
+                INSERT INTO Reserva (idDispositivo, idUsuario, fechaReserva) 
+                VALUES (?, ?, ?)
+            `;
+            db.query(logQuery, [idDispositivo, idUsuario, fechaReserva], (err) => {
+                if (err) {
+                    console.error("Error al registrar la reserva:", err);
+                    return res.status(500).json({ message: "Error al registrar la reserva" });
+                }
+
+                // Actualizar el estado del dispositivo a 'Reservado'
+                const updateQuery = "UPDATE Dispositivo SET estado = 'FueraDeServicio' WHERE idDispositivo = ?";
+                db.query(updateQuery, [idDispositivo], (err) => {
+                    if (err) {
+                        console.error("Error al actualizar el estado del dispositivo:", err);
+                        return res.status(500).json({ message: "Error al actualizar el estado del dispositivo" });
+                    }
+
+                    res.status(200).json({ message: "Reserva realizada exitosamente" });
+                });
+            });
+        });
+    });
+});
+
+
+
 // API para añadir una notificacion
 app.post("/notif", (req, res) => {
     const sql = "INSERT INTO `Notificaciones` (`mensaje`, `correoInstitucional`) VALUES (?)";
@@ -192,6 +253,16 @@ app.delete('/borrar/:id', (req, res) => {
 
 //Deletes API Calls
 
+app.get('/dispositivos', (req, res) => {
+    const sql = "SELECT idDispositivo, nombre, tipo, estado FROM Dispositivo";
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error("Error al obtener dispositivos:", err);
+            return res.status(500).json({ error: "Error al obtener dispositivos" });
+        }
+        res.json(data);
+    });
+});
 
 app.listen(8081,() => {
     console.log("Listening ");

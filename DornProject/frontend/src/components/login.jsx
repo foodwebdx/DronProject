@@ -95,9 +95,9 @@ function Login() {
     
             // Redirige según el rol
             if (authResult.rol === "Administrador") {
-                navigate('/AdminMainInterface'); // Redirige a la página del administrador
+                navigate('/AdminMainInterface', { state: { correo: correoInstitucional } }); // Redirige a la página del administrador
             } else {
-                navigate('/MainPage'); // Redirige a la página principal
+                navigate('/Sidebar', { state: { correo: correoInstitucional } }); // Redirige al menú principal del usuario
             }
         }
     };

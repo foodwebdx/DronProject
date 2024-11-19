@@ -9,6 +9,7 @@ import DispositivoInfo from './DispositivosInfo';
 import AdminPage from './AdminMainInterface';
 import AlertNotifications from './notificaciones';
 import Sidebar from './Sidebar';
+import ReservarDispositivo from './ReservarDispositivo';
 
 
 function RoutesNav() {
@@ -17,7 +18,7 @@ function RoutesNav() {
             <BrowserRouter>
                 <Routes>
                     {/* Redirección por defecto a login */}
-                    <Route path="/" element={<Navigate to="/login" replace />} />
+                    <Route path="/" element={<Navigate to="/MainPage" replace />} />
                     
                     {/* Rutas principales */}
                     <Route path="/login" element={<Login />} />
@@ -30,6 +31,7 @@ function RoutesNav() {
                     <Route path='/AdminMainInterface' element={<AdminPage />} />
                     <Route path='/notificaciones' element={<AlertNotifications />} />
                     <Route path='/Sidebar' element={<Sidebar />} />
+                    <Route path='/ReservarDispositivo' element={<ReservarDispositivo />} />
 
                 </Routes>
             </BrowserRouter>
