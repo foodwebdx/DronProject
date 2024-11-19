@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom'; // Importar para recibir el estado y redirigir
+import { useNavigate, useLocation } from 'react-router-dom'; // Agregar useNavigate para redirigir
 import '../styles/ReservarDispositivo.css';
 
 import drone1 from '../styles/images/dron1.png';
@@ -12,7 +12,7 @@ import robot3 from '../styles/images/robot3.png';
 
 const ReservarDispositivo = () => {
     const location = useLocation();
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook para redirigir
     const correoInstitucional = location.state?.correo || "Correo no proporcionado";
 
     const [dispositivos, setDispositivos] = useState([]);
@@ -49,13 +49,9 @@ const ReservarDispositivo = () => {
         fetchDispositivos();
     }, []);
 
-    const handleReservar = (idDispositivo) => {
-        // Redirigir al formulario de reserva con los datos necesarios
+    const handleReservar = async (idDispositivo) => {
         navigate('/FormularioReserva', {
-            state: {
-                correo: correoInstitucional,
-                idDispositivo,
-            },
+            state: { correo: correoInstitucional, idDispositivo },
         });
     };
 
@@ -63,7 +59,11 @@ const ReservarDispositivo = () => {
     if (error) return <p>Error al cargar los dispositivos. Intenta más tarde.</p>;
 
     return (
+
+        
+        
         <div className="dispositivos-container">
+            
             <h1>Reservar Dispositivo</h1>
             <p>Usuario: {correoInstitucional}</p> {/* Mostrar correo del usuario */}
             <div className="dispositivos-grid">
@@ -83,6 +83,7 @@ const ReservarDispositivo = () => {
                     </div>
                 ))}
             </div>
+
         </div>
     );
 };

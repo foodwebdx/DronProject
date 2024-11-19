@@ -82,8 +82,13 @@ function CreateUser() {
     return (
         <div className='user-container'>
             <div className='user-content'>
-                {/* Botón de regresar */}
-                <Link to="/sidebar" className="back-button">Regresar</Link>
+            <Link
+            to="/AdminMainInterface"
+            state={{ correo: correoInstitucional }} // Pasar el correo como estado
+            className="back-button"
+            >
+            Regresar
+            </Link>
 
                 <form onSubmit={handleSubmit}> 
                     <h2>Create New User</h2>

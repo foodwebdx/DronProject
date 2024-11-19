@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom'; // Importar Link y useLocation
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Importa Font Awesome
 import '../styles/AdminInterface.css'; // Archivo de estilos CSS
 import { FaBell, FaCogs, FaHistory, FaUsers } from 'react-icons/fa';
 
 const AdminPage = () => {
+  const location = useLocation();
+  const correoInstitucional = location.state?.correo || "Correo no proporcionado"; // Obtener correo
+
   return (
     <div className="page-container">
       {/* Barra de estado */}
@@ -17,31 +21,47 @@ const AdminPage = () => {
         <div className="admin-container">
           <h1 className="admin-title">Panel de Administración</h1>
           <div className="admin-grid">
+            {/* Alertas y notificaciones */}
             <div className="admin-card">
-            <a href="/notificaciones" className="admin-card-link">
-            <FaBell size={30} color="#1e3a8a" />
-            <h2>Alertas y Notificaciones</h2>
-          </a>
+              <Link
+                to="/notificaciones"
+                state={{ correo: correoInstitucional }} // Pasar el correo al componente de notificaciones
+                className="admin-card-link"
+              >
+                <FaBell size={30} color="#1e3a8a" />
+                <h2>Alertas y Notificaciones</h2>
+              </Link>
             </div>
+            {/* Reservar dispositivo */}
             <div className="admin-card">
-              <FaCogs size={30} color="#1e3a8a" />
-              <h2>Drones</h2>
+              <Link
+                to="/ReservarDispositivo"
+                state={{ correo: correoInstitucional }} // Pasar el correo al componente de reservas
+                className="admin-card-link"
+              >
+                <FaCogs size={30} color="#1e3a8a" />
+                <h2>Reservar Dispositivo</h2>
+              </Link>
             </div>
+            {/* Historial de reservas */}
             <div className="admin-card">
               <FaHistory size={30} color="#1e3a8a" />
               <h2>Historial de Reservas</h2>
             </div>
+            {/* Gestión de usuarios */}
             <div className="admin-card">
-              <FaUsers size={30} color="#1e3a8a" />
-              <a href="/CreateUser" className="admin-card-link">
-              <h2>Gestión de Usuarios</h2>
-              </a>
+              <Link
+                to="/CreateUser"
+                state={{ correo: correoInstitucional }} // Pasar el correo al componente de gestión de usuarios si necesario
+                className="admin-card-link"
+              >
+                <FaUsers size={30} color="#1e3a8a" />
+                <h2>Gestión de Usuarios</h2>
+              </Link>
             </div>
           </div>
         </div>
       </div>
-
-
     </div>
   );
 };

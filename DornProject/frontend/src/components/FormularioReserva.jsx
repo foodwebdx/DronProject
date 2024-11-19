@@ -100,7 +100,14 @@ const FormularioReserva = () => {
             <div className="rain"></div>
 
             {/* Botón de regresar */}
-            <Link to="/sidebar" className="back-button">Regresar</Link>
+            <Link
+            to="/ReservarDispositivo"
+            state={{ correo: correoInstitucional }} // Pasar el correo como estado
+            className="back-button"
+            >
+            Regresar
+            </Link>
+
 
             <h1>Reserva de Dispositivo</h1>
             {error && <p className="error">{error}</p>}
