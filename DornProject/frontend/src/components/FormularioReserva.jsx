@@ -42,9 +42,10 @@ function FormularioReserva() {
         try {
             const res = await fetch(`${api.base}weather?q=${ciudad}&units=metric&appid=${api.key}`);
             const data = await res.json();
-
+    
             if (data.cod === 200) {
                 const currentWeather = data.weather[0].description.toLowerCase();
+                console.log('Weather description:', currentWeather); // Mostrar en la consola
                 setClima(currentWeather);
                 return currentWeather;
             } else {
@@ -57,6 +58,7 @@ function FormularioReserva() {
             return null;
         }
     };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
