@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { saveAs } from 'file-saver'; // Para guardar el archivo CSV
+import Papa from 'papaparse'; // Para generar el CSV
 import '../styles/HistorialReservas.css';
 
 const HistorialReservas = () => {
@@ -27,6 +29,17 @@ const HistorialReservas = () => {
 
         fetchReservas();
     }, []);
+
+    const handleExportCSV = () => {
+        if (reservas.length === 0) {
+            alert("No hay datos para exportar.");
+            return;
+        }
+
+        const csvData = Papa.unparse(reservas); // Convierte los datos a formato CSV
+        const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+        saveAs(blob, `Historial_Reservas_${new Date().toISOString().split('T')[0]}.csv`);
+    };
 
     if (loading) return <p>Cargando historial de reservas...</p>;
     if (error) return <p>Error al cargar el historial de reservas. Intenta más tarde.</p>;
@@ -60,6 +73,9 @@ const HistorialReservas = () => {
                     onClick={() => navigate('/AdminMainInterface', { state: { correo: correoInstitucional } })}
                 >
                     Volver
+                </button>
+                <button className="export-button" onClick={handleExportCSV}>
+                    Exportar a CSV
                 </button>
             </div>
         </div>
