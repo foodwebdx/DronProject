@@ -88,8 +88,12 @@ function Login() {
             alert("Contraseña incorrecta. Te quedan " + (2 - tries) + " intentos.");
             if (tries === 2) {
                 sendNotification(correoInstitucional, `El usuario ${correoInstitucional} tuvo 3 intentos fallidos.`);
+                setLoading(true);
             }
-            setLoading(false);
+            else{
+                setLoading(false);  
+            }
+    
         } else {
             setTries(0);
     
