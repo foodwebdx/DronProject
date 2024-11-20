@@ -60,8 +60,6 @@ const ReservarDispositivo = () => {
 
     return (
 
-        
-        
         <div className="dispositivos-container">
             
             <h1>Reservar Dispositivo</h1>

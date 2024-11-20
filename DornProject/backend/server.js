@@ -264,6 +264,19 @@ app.get('/dispositivos', (req, res) => {
     });
 });
 
+app.get('/historialReservas', (req, res) => {
+    const sql = "SELECT * FROM Reserva";
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error("Error al obtener el historial de reservas:", err);
+            res.status(500).json({ message: "Error al obtener el historial de reservas" });
+        } else {
+            res.status(200).json(data);
+        }
+    });
+});
+
+
 app.listen(8081,() => {
     console.log("Listening ");
 })

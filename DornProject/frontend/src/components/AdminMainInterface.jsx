@@ -45,8 +45,14 @@ const AdminPage = () => {
             </div>
             {/* Historial de reservas */}
             <div className="admin-card">
-              <FaHistory size={30} color="#1e3a8a" />
-              <h2>Historial de Reservas</h2>
+              <Link
+                to="/historialReservas"
+                state={{ correo: correoInstitucional }} // Pasar el correo al componente de reservas
+                className="admin-card-link"
+              >
+                <FaHistory size={30} color="#1e3a8a" />
+                <h2>Historial Reservas</h2>
+              </Link>
             </div>
             {/* Gestión de usuarios */}
             <div className="admin-card">

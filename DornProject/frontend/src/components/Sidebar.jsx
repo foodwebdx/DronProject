@@ -20,7 +20,7 @@ function Sidebar() {
           <Link to="/" className="sidebar-link">Inicio</Link>
         </li>
         <li>
-          <Link to="/dispositivos" className="sidebar-link">Lista de Dispositivos</Link> {/* Este no pasa correo */}
+          <Link to="/dispositivos" className="sidebar-link">Crear Dispositivo</Link> {/* Este no pasa correo */}
         </li>
         <li>
           <Link

@@ -10,7 +10,7 @@ import AdminPage from './AdminMainInterface';
 import AlertNotifications from './notificaciones';
 import Sidebar from './Sidebar';
 import ReservarDispositivo from './ReservarDispositivo';
-
+import Historial from './historialReservas';
 
 function RoutesNav() {
     return (
@@ -32,6 +32,7 @@ function RoutesNav() {
                     <Route path='/notificaciones' element={<AlertNotifications />} />
                     <Route path='/Sidebar' element={<Sidebar />} />
                     <Route path='/ReservarDispositivo' element={<ReservarDispositivo />} />
+                    <Route path='/HistorialReservas' element={<Historial />} />
 
                 </Routes>
             </BrowserRouter>
