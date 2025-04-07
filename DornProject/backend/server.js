@@ -1,7 +1,14 @@
 const exppress = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
+app.get('/', (req, res) => {
+    res.send('Conexión exitosa al backend');
+});
 
+
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+});
 const app = exppress();
 app.use(exppress.json());
 app.use(cors());
@@ -9,9 +16,17 @@ app.use(cors());
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    password: "root",
     database: "drones"
 })
+
+db.connect((err) => {
+    if (err) {
+        console.error("Error de conexión:", err);
+    } else {
+        console.log("Conexión a MySQL exitosa");
+    }
+});
 
 //When creating API Calls, order is {Post, Get, Puts, Deletes}
 //Post API Calls
@@ -28,7 +43,7 @@ app.post("/createUser", (req, res) => {
     db.query(sql, [values], (err, data) => {
         if (err) {
             console.error(err); // Muestra el error en la consola
-            return res.json("Error");
+            return res.json("Error, no se pudo crear el usuario.");
         }
         return res.json("data se mando de manera exitosa");
     });
@@ -276,7 +291,11 @@ app.get('/historialReservas', (req, res) => {
     });
 });
 
+app.get('/', (req, res) => {
+    res.send('Conexión exitosa al backend');
+});
 
-app.listen(8081,() => {
-    console.log("Listening ");
-})
+
+app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+});
