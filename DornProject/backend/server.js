@@ -1,14 +1,7 @@
 const exppress = require("express");
 const cors = require("cors");
 const mysql = require("mysql");
-app.get('/', (req, res) => {
-    res.send('Conexión exitosa al backend');
-});
-
-
-app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-});
+const PORT = 8081; 
 const app = exppress();
 app.use(exppress.json());
 app.use(cors());
