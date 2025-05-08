@@ -112,6 +112,7 @@ function Login() {
             <form onSubmit={handleLogin} className="login-form">
                 <h2>Login</h2>
                 <input
+                    id='correo'
                     type="email"
                     placeholder="Correo electrónico"
                     value={correoInstitucional}
@@ -119,6 +120,7 @@ function Login() {
                     required
                 />
                 <input
+                    id='password'
                     type="password"
                     placeholder="Contraseña"
                     value={contraseña}
