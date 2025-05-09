@@ -95,6 +95,7 @@ function CreateUser() {
                     <div className='text-input'>
                         <label htmlFor='First Name'>Enter Name</label>
                         <input 
+                            id='firstName'
                             type='text' 
                             placeholder='Enter Name' 
                             className='form-control'
@@ -103,6 +104,7 @@ function CreateUser() {
 
                         <label htmlFor='Last Name 1'>Enter Last Name 1</label>
                         <input 
+                            id='lastName1'
                             type='text' 
                             placeholder='Enter Last Name 1' 
                             className='form-control'
@@ -111,6 +113,7 @@ function CreateUser() {
 
                         <label htmlFor='Last Name 2'>Enter Last Name 2</label>
                         <input 
+                            id='lastName2'
                             type='text' 
                             placeholder='Enter Last Name 2' 
                             className='form-control'
@@ -119,6 +122,7 @@ function CreateUser() {
 
                         <label htmlFor='Email'>Enter Email</label>
                         <input 
+                            id='email'
                             type='text' 
                             placeholder='Enter Email' 
                             className='form-control'
@@ -127,6 +131,7 @@ function CreateUser() {
                         
                         <label htmlFor='Password'>Password</label>
                         <input 
+                            id='password'
                             type='password' 
                             placeholder='Password' 
                             className='form-control'
@@ -135,6 +140,7 @@ function CreateUser() {
                         
                         <label htmlFor='Rol'>Rol</label>
                         <select 
+                            id='rol'
                             className='form-control'
                             onChange={(e) => SetRol(e.target.value)}
                         >
@@ -144,7 +150,8 @@ function CreateUser() {
                         </select>
 
                         <label htmlFor='Numero Telefono'>Numero Telefono</label>
-                        <input 
+                        <input
+                            id='contactNumber'
                             type='text' 
                             placeholder='Nro Telefono' 
                             className='form-control'

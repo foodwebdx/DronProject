@@ -154,7 +154,7 @@ app.post("/createDispositivo", (req, res) => {
             console.error(err); // Muestra el error en la consola para depuración
             return res.json("Error al insertar el dispositivo.");
         }
-        return res.json("El dispositivo se creó exitosamente.");
+        return res.json(message = "El dispositivo se creó exitosamente.");
     });
 });
 

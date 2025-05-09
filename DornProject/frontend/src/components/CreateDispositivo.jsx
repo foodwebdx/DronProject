@@ -73,6 +73,7 @@ function CreateDispositivo() {
                         {/* Campos del formulario */}
                         <label htmlFor='Nombre'>Device Name</label>
                         <input 
+                            id='nombre'
                             type='text' 
                             placeholder='Enter device name' 
                             className='form-control'
@@ -81,6 +82,7 @@ function CreateDispositivo() {
 
                         <label htmlFor='Tipo'>Device Type</label>
                         <select 
+                            id='tipo'
                             className='form-control'
                             onChange={e => setTipo(e.target.value)}
                         >
@@ -91,6 +93,7 @@ function CreateDispositivo() {
 
                         <label htmlFor='Estado'>Status</label>
                         <select 
+                            id='estado'
                             className='form-control'
                             onChange={e => setEstado(e.target.value)}
                         >
@@ -102,6 +105,7 @@ function CreateDispositivo() {
 
                         <label htmlFor='Ubicacion'>Location</label>
                         <input 
+                            id='ubicacion'
                             type='text' 
                             placeholder='Enter location' 
                             className='form-control'
@@ -110,6 +114,7 @@ function CreateDispositivo() {
 
                         <label htmlFor='NivelBateria'>Battery Level (%)</label>
                         <input 
+                            id='nivelBateria'
                             type='number' 
                             placeholder='Enter battery level' 
                             className='form-control'
@@ -118,6 +123,7 @@ function CreateDispositivo() {
 
                         <label htmlFor='TiempoUsoTotal'>Total Usage Time (hours)</label>
                         <input 
+                            id='tiempoUsoTotal'
                             type='number' 
                             placeholder='Enter total usage time' 
                             className='form-control'
@@ -126,6 +132,7 @@ function CreateDispositivo() {
 
                         <label htmlFor='FechaUltimaActividad'>Last Activity Date</label>
                         <input 
+                            id='fechaUltimaActividad'
                             type='date' 
                             className='form-control'
                             onChange={e => setFechaUltimaActividad(e.target.value)} 
@@ -133,6 +140,7 @@ function CreateDispositivo() {
 
                         <label htmlFor='CapacidadCarga'>Load Capacity (kg)</label>
                         <select 
+                            id='capacidadCarga'
                             className='form-control'
                             onChange={e => setCapacidadCarga(e.target.value)}
                         >
