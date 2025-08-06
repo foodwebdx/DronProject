@@ -180,7 +180,7 @@ app.get('/auth', (req, res) => {
         if (data.length > 0) {
             return res.json({ success: true, rol: data[0].rol }); // Devuelve el rol si coincide
         } else {
-            return res.json({ success: false, message: "Credenciales incorrectas" });
+            return res.json({ success: false, message: "Credenciales incorrectas jaja" });
         }
     });
 });
