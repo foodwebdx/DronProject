@@ -221,7 +221,7 @@ app.get('/dispositivoInfo/:idDispositivo', (req, res) => {
         }
 
         if (data.length === 0) {
-            return res.json({ message: "Dispositivo no encontrado" });
+            return res.json({ message: "Dispositivo no encontrado " });
         }
 
         return res.json(data[0]);
